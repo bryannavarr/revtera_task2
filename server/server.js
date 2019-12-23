@@ -2,12 +2,12 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const router = require("./app/routes");
-const socket = require("./app/socket")
+// const socket = require("./app/socket")
 const http = require("http")
 
 app.use(bodyParser.json());
 
-app.use(socket);
+// app.use(socket);
 
 // parse application/x-www-form-urlencoded
 app.use(

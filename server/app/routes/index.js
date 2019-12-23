@@ -1,10 +1,10 @@
 const router = require("express").Router();
-// const linksRoutes = require("./links.routes")
+const socketRoutes = require("./socket.routes")
 const clientRoutes = require("./clients.routes");
 
 module.exports = router;
 
-// router.use('/api/links', linksRoutes)
+router.use('/api/links', linksRoutes)
 // router.use('/api/recordsJson', linksRoutes)
 
 
