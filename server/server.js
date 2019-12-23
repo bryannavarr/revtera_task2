@@ -2,10 +2,15 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const router = require("./app/routes");
+const cors = require("cors")
 // const socket = require("./app/socket")
 const http = require("http")
 
 app.use(bodyParser.json());
+
+// app.use(cors({origin: 'http://localhost:3003'}))
+
+const port = process.env.PORT || 8087;
 
 // app.use(socket);
 
@@ -18,7 +23,7 @@ app.use(
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -29,7 +34,7 @@ app.use(function (req, res, next) {
 // register routes
 app.use(router);
 
-const port = process.env.PORT || 8089;
+
 
 
 // app.listen(port, "127.0.0.1")
@@ -44,7 +49,7 @@ http.createServer(function (req, res) {
   res.write('Hello World!'); //write a response to the client
   res.end(); //end the response
 
-}).listen(port, '127.0.0.1'); //the server object listens on port 8080
+}).listen(port, 'localhost'); //the server object listens on port 8080
 
 
 

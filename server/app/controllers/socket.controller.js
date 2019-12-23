@@ -1,28 +1,38 @@
 const WSS = require('ws').Server;
 
-module.exports = WSS
+module.exports = {
+  WSS: WSS,
+  createSocket: createSocket
+
+}
 
 
-export function createSocket() {
-  const mainWss = new WSS({ port: 8000, host: '127.0.0.1', origin: '*' });
+function createSocket(req, res) {
+
+  console.log("body from client: " + req.body)
+  // const mainWss = new WSS({ port: data.port, host: data.host, origin: '*' });
 
 
-  mainWss.on('connection', function connection(socket) {
-    console.log("Opened Connection")
-    socket.send("Connection established successfully")
+  return new Promise(function (resolve, reject) {
 
-    socket.on('message', function message(message) {
-      console.log("data from client :" + message)
-      mainWss.clients.forEach(function each(client) {
+    err ? reject(err) : resolve("SUCCESS")
+    mainWss.on('connection', function connection(socket) {
+      console.log("Opened Connection")
+      socket.send("Connection established successfully")
 
-        client.send("Message received!");
+      socket.on('message', function message(message) {
+        console.log("data from client :" + message)
+        mainWss.clients.forEach(function each(client) {
+
+          client.send("Message received!");
+
+
+        })
 
 
       })
 
-
     })
-
   })
 }
 
