@@ -4,14 +4,26 @@ import './App.css';
 import LeftPanel from "./LeftPanel"
 import RightPanel from "./RightPanel"
 
-function App() {
-  return (
-    <div className="container">
-      <LeftPanel />
+class App extends React.Component {
+  constructor() {
+    super()
 
-      <RightPanel/>
-    </div>
-  );
+    this.state = {
+      data: ''
+    }
+
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <LeftPanel data={this.state.data} />
+
+        <RightPanel data={this.state.data} />
+      </div>
+    );
+  }
+
 }
 
 export default App;
